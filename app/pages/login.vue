@@ -33,7 +33,7 @@ async function handleLogin() {
       }
     })
     await fetchSession(true)
-    toast.add({ title: 'Berhasil masuk ke Taskora', color: 'success' })
+    toast.add({ title: 'Berhasil masuk ke Taskbir', color: 'success' })
     await navigateTo(resolveRedirect())
   } catch (err: any) {
     errorMsg.value = err?.data?.statusMessage || err?.message || 'Gagal login.'
@@ -47,7 +47,7 @@ async function handleLogin() {
   <UCard>
     <template #header>
       <h2 class="text-lg font-semibold text-slate-900">Masuk ke Akun Anda</h2>
-      <p class="mt-0.5 text-sm text-slate-500">Kelola proyek dan tugas tim Anda di Taskora.</p>
+      <p class="mt-0.5 text-sm text-slate-500">Kelola proyek dan tugas tim Anda di Taskbir.</p>
     </template>
 
     <UAlert

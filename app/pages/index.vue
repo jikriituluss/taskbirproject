@@ -172,7 +172,7 @@ const breakdownRows = computed(() => {
         <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
           <UIcon name="i-lucide-layout-dashboard" class="h-6 w-6" />
         </div>
-        <p class="mt-4 text-base font-semibold text-slate-900">Selamat datang di Taskora</p>
+        <p class="mt-4 text-base font-semibold text-slate-900">Selamat datang di Taskbir</p>
         <p class="mx-auto mt-1 max-w-md text-sm text-slate-500">
           Workspace adalah ruang kerja terpisah untuk setiap klien atau tim. Buat workspace
           pertama Anda untuk mulai mengelola proyek dan tugas.

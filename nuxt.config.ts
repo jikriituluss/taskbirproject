@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Taskora — Project & Task Management',
+      title: 'Taskbir - Project & Task Management',
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
       ],
@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            'Taskora adalah aplikasi manajemen proyek dan tugas modern untuk freelancer, agensi, dan tim kecil.'
+            'Taskbir adalah aplikasi manajemen proyek dan tugas modern untuk freelancer, agensi, dan tim kecil.'
         }
       ]
     }
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     tidbSsl: process.env.TIDB_SSL || 'true',
     tidbSslCaPath: process.env.TIDB_SSL_CA_PATH || '',
     public: {
-      appName: process.env.NUXT_PUBLIC_APP_NAME || 'Taskora',
+      appName: process.env.NUXT_PUBLIC_APP_NAME || 'Taskbir',
       appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000'
     }
   },

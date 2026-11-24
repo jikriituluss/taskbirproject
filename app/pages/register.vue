@@ -37,7 +37,7 @@ async function handleRegister() {
       }
     })
     await fetchSession(true)
-    toast.add({ title: 'Registrasi berhasil! Selamat datang di Taskora.', color: 'success' })
+    toast.add({ title: 'Registrasi berhasil! Selamat datang di Taskbir.', color: 'success' })
     await navigateTo(resolveRedirect())
   } catch (err: any) {
     errorMsg.value = err?.data?.statusMessage || err?.message || 'Gagal mendaftar.'

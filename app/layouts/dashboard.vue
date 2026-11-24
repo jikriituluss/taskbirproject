@@ -147,7 +147,7 @@ watch(
     <aside class="hidden w-64 shrink-0 flex-col border-r border-slate-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
       <div class="flex h-16 items-center gap-2.5 border-b border-slate-200 px-5">
         <TaskoraLogo size="sm" />
-        <span class="text-lg font-bold tracking-tight text-slate-900">Taskora</span>
+        <span class="text-lg font-bold tracking-tight text-slate-900">Taskbir</span>
       </div>
 
       <nav class="flex-1 space-y-5 overflow-y-auto p-3">
@@ -210,7 +210,7 @@ watch(
     </aside>
 
     <!-- Mobile Sidebar Drawer -->
-    <USlideover v-model:open="mobileSidebarOpen" side="left" title="Navigasi Taskora">
+    <USlideover v-model:open="mobileSidebarOpen" side="left" title="Navigasi Taskbir">
       <template #body>
         <nav class="space-y-5">
           <div v-for="group in navGroups" :key="group.label">
@@ -417,7 +417,7 @@ watch(
           variant="subtle"
           icon="i-lucide-eye"
           title="Mode Preview UI (Data Dummy Aktif)"
-          description="Anda sedang melihat tampilan Taskora dengan data contoh interaktif. Untuk menyimpan permanen ke TiDB, isi .env dan jalankan npm run db:migrate."
+          description="Anda sedang melihat tampilan Taskbir dengan data contoh interaktif. Untuk menyimpan permanen ke TiDB, isi .env dan jalankan npm run db:migrate."
         />
         <slot />
       </main>

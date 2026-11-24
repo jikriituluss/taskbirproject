@@ -48,7 +48,7 @@ async function handleReset() {
     <template #header>
       <h2 class="text-lg font-semibold text-slate-900">Atur Password Baru</h2>
       <p class="mt-0.5 text-sm text-slate-500">
-        Buat password baru minimal 8 karakter untuk akun Taskora Anda.
+        Buat password baru minimal 8 karakter untuk akun Taskbir Anda.
       </p>
     </template>
 
