@@ -1,0 +1,33 @@
+{
+  "name": "taskora",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.158",
+    "@nuxt/ui": "^4.13.0",
+    "drizzle-orm": "^0.45.4",
+    "lucide-vue-next": "^1.0.0",
+    "mysql2": "^3.24.6",
+    "nuxt": "^4.5.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.10",
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.14"
+  }
+}

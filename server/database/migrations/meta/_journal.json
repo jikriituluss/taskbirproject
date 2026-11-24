@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1795417742179,
+      "tag": "0000_colorful_miek",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1795483008325,
+      "tag": "0001_real_molecule_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1795489132520,
+      "tag": "0002_true_nemesis",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1795498387531,
+      "tag": "0003_long_giant_girl",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1795499797487,
+      "tag": "0004_brave_jocasta",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1795500254003,
+      "tag": "0005_smooth_black_bird",
+      "breakpoints": true
+    }
+  ]
+}

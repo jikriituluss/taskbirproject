@@ -1,0 +1,1 @@
+ALTER TABLE `workspace_members` MODIFY COLUMN `role` enum('owner','member') NOT NULL DEFAULT 'member';
