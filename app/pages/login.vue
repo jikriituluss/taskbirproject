@@ -18,7 +18,7 @@ function resolveRedirect(): string {
   if (typeof redirect === 'string' && redirect.startsWith('/') && !redirect.startsWith('//')) {
     return redirect
   }
-  return '/'
+  return '/dashboard'
 }
 
 async function handleLogin() {

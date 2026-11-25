@@ -57,7 +57,7 @@ const navGroups = [
   {
     label: 'Ruang Kerja',
     items: [
-      { label: 'Dashboard', to: '/', icon: 'i-lucide-layout-dashboard' },
+      { label: 'Dashboard', to: '/dashboard', icon: 'i-lucide-layout-dashboard' },
       { label: 'My Tasks', to: '/my-tasks', icon: 'i-lucide-check-circle-2' }
     ]
   },
@@ -118,7 +118,7 @@ async function markAsRead(id: string) {
 }
 
 function isActiveRoute(to: string) {
-  if (to === '/') return route.path === '/'
+  if (to === '/dashboard') return route.path === '/dashboard'
   return route.path.startsWith(to)
 }
 
