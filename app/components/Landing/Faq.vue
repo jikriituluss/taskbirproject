@@ -4,7 +4,7 @@ const items = [
     label: 'Apakah Taskbir gratis untuk dicoba?',
     icon: 'i-lucide-gift',
     content:
-      'Ya. Daftar dan buat workspace langsung dari halaman ini — tanpa kartu kredit untuk mulai mengelola proyek dan tugas.'
+      'Ya. Daftar dan buat workspace langsung dari halaman ini, tanpa kartu kredit untuk mulai mengelola proyek dan tugas.'
   },
   {
     label: 'Apa bedanya My Tasks dan Kanban?',
@@ -34,7 +34,7 @@ const items = [
 </script>
 
 <template>
-  <section id="faq" class="scroll-mt-20 border-t border-slate-200 bg-white py-16 sm:py-24">
+  <section id="faq" class="scroll-mt-20 border-t border-slate-200 bg-slate-50 py-16 sm:py-24">
     <div class="mx-auto max-w-3xl px-4 sm:px-6">
       <LandingSectionHeader
         eyebrow="FAQ"
@@ -56,7 +56,7 @@ const items = [
             </span>
             <UIcon
               name="i-lucide-chevron-down"
-              class="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 group-open:rotate-180"
+              class="h-4 w-4 shrink-0 text-slate-500 transition-transform duration-200 group-open:rotate-180"
             />
           </summary>
           <p class="border-t border-slate-100 px-5 pt-3 pb-4 text-sm leading-relaxed text-slate-600">

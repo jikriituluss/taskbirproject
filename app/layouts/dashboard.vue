@@ -140,17 +140,17 @@ watch(
 
 <template>
   <div
-    class="flex min-h-screen bg-slate-50 text-slate-900"
+    class="flex min-h-screen bg-slate-50/70 text-slate-900"
     :class="isViewportLocked ? 'lg:h-dvh lg:min-h-0 lg:overflow-hidden' : ''"
   >
     <!-- Desktop Sidebar -->
-    <aside class="hidden w-64 shrink-0 flex-col border-r border-slate-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
-      <div class="flex h-16 items-center gap-2.5 border-b border-slate-200 px-5">
+    <aside class="hidden w-64 shrink-0 flex-col border-r border-slate-200/80 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
+      <div class="flex h-16 items-center gap-2.5 border-b border-slate-200/80 px-5">
         <TaskoraLogo size="sm" />
         <span class="text-lg font-bold tracking-tight text-slate-900">Taskbir</span>
       </div>
 
-      <nav class="flex-1 space-y-5 overflow-y-auto p-3">
+      <nav class="flex-1 space-y-5 overflow-y-auto p-3.5">
         <div v-for="group in navGroups" :key="group.label">
           <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
             {{ group.label }}
@@ -160,11 +160,11 @@ watch(
               v-for="item in group.items"
               :key="item.to"
               :to="item.to"
-              class="relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
+              class="relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 ease-out"
               :class="
                 isActiveRoute(item.to)
-                  ? 'bg-indigo-50 text-indigo-700'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'bg-indigo-50/90 text-indigo-700 shadow-2xs ring-1 ring-indigo-100'
+                  : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900'
               "
             >
               <span
@@ -178,10 +178,10 @@ watch(
         </div>
       </nav>
 
-      <div class="space-y-1 border-t border-slate-200 p-3">
+      <div class="space-y-1 border-t border-slate-200/80 p-3.5">
         <button
           type="button"
-          class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700"
+          class="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700"
           @click="logout"
         >
           <UIcon name="i-lucide-log-out" class="h-4 w-4 shrink-0" />
@@ -192,11 +192,11 @@ watch(
           v-for="item in bottomNavItems"
           :key="item.to"
           :to="item.to"
-          class="relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
+          class="relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-colors"
           :class="
             isActiveRoute(item.to)
-              ? 'bg-indigo-50 text-indigo-700'
-              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+              ? 'bg-indigo-50/90 text-indigo-700 shadow-2xs ring-1 ring-indigo-100'
+              : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900'
           "
         >
           <span

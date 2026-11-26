@@ -22,12 +22,12 @@ const steps = [
 </script>
 
 <template>
-  <section id="cara-kerja" class="scroll-mt-20 py-16 sm:py-24">
+  <section id="cara-kerja" class="scroll-mt-20 bg-indigo-50/50 py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <LandingSectionHeader
         eyebrow="Cara kerja"
         title="Tiga langkah, langsung jalan"
-        subtitle="Tanpa setup panjang — tim Anda bisa mulai hari ini."
+        subtitle="Tanpa setup panjang, tim Anda bisa mulai hari ini."
       />
 
       <ol class="mt-10 grid gap-8 sm:mt-14 sm:grid-cols-3 sm:gap-10">
@@ -35,7 +35,7 @@ const steps = [
           <div class="flex flex-col items-center text-center">
             <div class="relative flex items-center justify-center">
               <span
-                class="flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-100 bg-indigo-50 text-indigo-600"
+                class="flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-200 bg-white text-indigo-700 shadow-2xs"
               >
                 <UIcon :name="s.icon" class="h-6 w-6" />
               </span>

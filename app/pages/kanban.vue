@@ -138,11 +138,16 @@ watch(
 <template>
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Kanban Board</h1>
-        <p class="mt-0.5 text-sm text-slate-500">
-          Seret dan lepas (drag-and-drop) kartu tugas untuk mengubah status secara langsung.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-columns-3" class="h-5 w-5" />
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900">Kanban Board</h1>
+          <p class="mt-0.5 text-sm text-slate-500">
+            Seret dan lepas (drag-and-drop) kartu tugas untuk mengubah status secara langsung.
+          </p>
+        </div>
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
@@ -187,10 +192,12 @@ watch(
       <USkeleton v-for="i in 4" :key="i" class="h-96 rounded-xl" />
     </div>
 
-    <UCard v-else-if="tasks.length === 0">
+    <UCard v-else-if="tasks.length === 0" class="rounded-2xl border-slate-200/90 shadow-xs">
       <div class="py-12 text-center">
-        <UIcon name="i-lucide-columns-3" class="mx-auto h-10 w-10 text-slate-300" />
-        <p class="mt-3 text-sm font-medium text-slate-900">
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-columns-3" class="h-6 w-6" />
+        </div>
+        <p class="mt-3 text-sm font-semibold text-slate-900">
           {{
             projects.length === 0
               ? 'Belum ada proyek di workspace ini'
@@ -223,11 +230,11 @@ watch(
       <div
         v-for="col in TASK_STATUSES"
         :key="col"
-        class="flex min-h-[420px] flex-col rounded-xl border bg-slate-100/70 p-3 transition-colors"
+        class="flex min-h-[420px] flex-col rounded-2xl border bg-slate-100/80 p-3.5 transition-colors"
         :class="
           dragOverColumn === col
             ? 'border-indigo-400 bg-indigo-50/50'
-            : 'border-slate-200'
+            : 'border-slate-200/90'
         "
         @dragover="onDragOver($event, col)"
         @dragleave="onDragLeave"
@@ -250,7 +257,7 @@ watch(
             v-for="task in tasksInColumn(col)"
             :key="task.id"
             draggable="true"
-            class="cursor-grab rounded-lg border border-slate-200 bg-white p-3 shadow-xs transition hover:border-indigo-300 active:cursor-grabbing"
+            class="cursor-grab rounded-xl border border-slate-200/90 bg-white p-3.5 shadow-2xs transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-sm active:cursor-grabbing"
             @dragstart="onDragStart(task.id)"
             @click="openEditTask(task)"
           >

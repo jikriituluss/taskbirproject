@@ -160,11 +160,21 @@ watch(
 <template>
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Team</h1>
-        <p class="mt-0.5 text-sm text-slate-500">
-          Kelola anggota workspace, atur peran, dan pantau beban tugas setiap anggota.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-users" class="h-5 w-5" />
+        </div>
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900">Team</h1>
+            <UBadge v-if="members.length > 0" color="primary" variant="subtle" size="xs">
+              {{ members.length }} anggota
+            </UBadge>
+          </div>
+          <p class="mt-0.5 text-sm text-slate-500">
+            Kelola anggota workspace, atur peran, dan pantau beban tugas setiap anggota.
+          </p>
+        </div>
       </div>
       <UButton
         v-if="isOwner"
@@ -192,7 +202,7 @@ watch(
 
     <USkeleton v-else-if="loading" class="h-64 rounded-xl" />
 
-    <UCard v-else :ui="{ body: 'p-0' }">
+    <UCard v-else class="overflow-hidden rounded-2xl border-slate-200/90 shadow-xs" :ui="{ body: 'p-0' }">
       <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-slate-200 text-sm">
           <thead class="bg-slate-50 text-left text-xs font-semibold uppercase text-slate-500">

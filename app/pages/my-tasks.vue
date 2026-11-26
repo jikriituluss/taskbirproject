@@ -120,11 +120,16 @@ watch(
 <template>
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900">My Tasks</h1>
-        <p class="mt-0.5 text-sm text-slate-500">
-          Daftar tugas yang menjadi tanggung jawab Anda.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-check-circle-2" class="h-5 w-5" />
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900">My Tasks</h1>
+          <p class="mt-0.5 text-sm text-slate-500">
+            Daftar tugas yang menjadi tanggung jawab Anda.
+          </p>
+        </div>
       </div>
       <UButton
         v-if="projects.length > 0"
@@ -140,25 +145,30 @@ watch(
     </div>
 
     <!-- Filters -->
-    <div class="flex flex-wrap items-center gap-3">
-      <USelect
-        v-model="statusFilter"
-        :items="[
-          { label: 'Semua Status', value: 'all' },
-          ...Object.entries(TASK_STATUS_META).map(([value, m]) => ({ label: m.label, value }))
-        ]"
-        size="sm"
-        class="w-40"
-      />
-      <USelect
-        v-model="priorityFilter"
-        :items="[
-          { label: 'Semua Prioritas', value: 'all' },
-          ...Object.entries(TASK_PRIORITY_META).map(([value, m]) => ({ label: m.label, value }))
-        ]"
-        size="sm"
-        class="w-40"
-      />
+    <div class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/90 bg-white p-3.5 shadow-xs">
+      <div class="flex flex-wrap items-center gap-2.5">
+        <USelect
+          v-model="statusFilter"
+          :items="[
+            { label: 'Semua Status', value: 'all' },
+            ...Object.entries(TASK_STATUS_META).map(([value, m]) => ({ label: m.label, value }))
+          ]"
+          size="sm"
+          class="w-40"
+        />
+        <USelect
+          v-model="priorityFilter"
+          :items="[
+            { label: 'Semua Prioritas', value: 'all' },
+            ...Object.entries(TASK_PRIORITY_META).map(([value, m]) => ({ label: m.label, value }))
+          ]"
+          size="sm"
+          class="w-40"
+        />
+      </div>
+      <span class="text-xs font-medium text-slate-500">
+        Menampilkan <span class="font-semibold text-slate-900">{{ filteredTasks.length }}</span> tugas
+      </span>
     </div>
 
     <UAlert
@@ -179,10 +189,12 @@ watch(
       <USkeleton v-for="i in 4" :key="i" class="h-14 rounded-xl" />
     </div>
 
-    <UCard v-else-if="tasks.length === 0">
+    <UCard v-else-if="tasks.length === 0" class="rounded-2xl border-slate-200/90 shadow-xs">
       <div class="py-10 text-center">
-        <UIcon name="i-lucide-check-circle-2" class="mx-auto h-10 w-10 text-slate-300" />
-        <p class="mt-3 text-sm font-medium text-slate-900">Belum ada tugas untuk Anda</p>
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-check-circle-2" class="h-6 w-6" />
+        </div>
+        <p class="mt-3 text-sm font-semibold text-slate-900">Belum ada tugas untuk Anda</p>
         <p class="mx-auto mt-1 max-w-sm text-xs text-slate-500">
           {{
             projects.length === 0
@@ -205,10 +217,12 @@ watch(
       </div>
     </UCard>
 
-    <UCard v-else-if="filteredTasks.length === 0">
+    <UCard v-else-if="filteredTasks.length === 0" class="rounded-2xl border-slate-200/90 shadow-xs">
       <div class="py-10 text-center">
-        <UIcon name="i-lucide-filter-x" class="mx-auto h-10 w-10 text-slate-300" />
-        <p class="mt-3 text-sm font-medium text-slate-900">Tidak ada tugas yang cocok</p>
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
+          <UIcon name="i-lucide-filter-x" class="h-6 w-6" />
+        </div>
+        <p class="mt-3 text-sm font-semibold text-slate-900">Tidak ada tugas yang cocok</p>
         <p class="mt-1 text-xs text-slate-500">
           Ubah atau reset filter status dan prioritas untuk melihat tugas lainnya.
         </p>
@@ -224,7 +238,7 @@ watch(
       </div>
     </UCard>
 
-    <UCard v-else :ui="{ body: 'p-0' }">
+    <UCard v-else class="overflow-hidden rounded-2xl border-slate-200/90 shadow-xs" :ui="{ body: 'p-0' }">
       <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-slate-200 text-sm">
           <thead class="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">

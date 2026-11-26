@@ -131,12 +131,17 @@ const breakdownRows = computed(() => {
 <template>
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Dashboard</h1>
-        <p class="mt-0.5 text-sm text-slate-500">
-          Ringkasan proyek, tugas, dan progres kerja di
-          <span class="font-medium text-slate-700">{{ activeWorkspace?.name }}</span>.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-layout-dashboard" class="h-5 w-5" />
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900">Dashboard</h1>
+          <p class="mt-0.5 text-sm text-slate-500">
+            Ringkasan proyek, tugas, dan progres kerja di
+            <span class="font-medium text-slate-700">{{ activeWorkspace?.name }}</span>.
+          </p>
+        </div>
       </div>
       <div v-if="activeWorkspace" class="flex gap-2">
         <UButton to="/projects" color="primary" icon="i-lucide-folder-plus">
@@ -193,7 +198,7 @@ const breakdownRows = computed(() => {
       <!-- Asymmetric Focal Strip: Progress Hero (2/3) + Compact Metric Stack (1/3) -->
       <div class="grid gap-5 lg:grid-cols-3">
         <div
-          class="flex flex-col justify-between rounded-2xl border border-indigo-200/80 bg-gradient-to-br from-indigo-50/80 via-white to-amber-50/60 p-6 shadow-xs lg:col-span-2"
+          class="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-indigo-200/90 bg-gradient-to-br from-indigo-50/80 via-white to-amber-50/60 p-6 shadow-xs lg:col-span-2"
         >
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
@@ -201,7 +206,7 @@ const breakdownRows = computed(() => {
                 Progres Penyelesaian Workspace
               </p>
               <div class="mt-2 flex items-baseline gap-3">
-                <span class="text-4xl font-bold tracking-tight text-slate-900">
+                <span class="text-4xl font-extrabold tracking-tight text-indigo-700">
                   {{ dashboard.summary.completionRate }}%
                 </span>
                 <span class="text-sm font-medium text-slate-600">
@@ -221,68 +226,88 @@ const breakdownRows = computed(() => {
           </div>
 
           <div class="mt-5 space-y-3">
-            <div class="flex h-3 w-full overflow-hidden rounded-full bg-slate-200/80">
+            <div class="flex h-3.5 w-full overflow-hidden rounded-full bg-white/90 p-0.5 ring-1 ring-indigo-100">
               <div
                 v-for="row in breakdownRows"
                 :key="row.key"
                 :class="row.color"
-                class="transition-all duration-300"
+                class="first:rounded-l-full last:rounded-r-full transition-all duration-300"
                 :style="{ width: `${row.pct}%` }"
                 :title="`${row.label}: ${row.count} tugas (${row.pct}%)`"
               />
             </div>
 
-            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
-              <div v-for="row in breakdownRows" :key="row.key" class="flex items-center gap-1.5">
-                <span class="h-2.5 w-2.5 rounded-full" :class="row.color" />
-                <span class="font-medium text-slate-700">{{ row.label }}:</span>
-                <span class="font-semibold text-slate-900">{{ row.count }}</span>
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <div
+                v-for="row in breakdownRows"
+                :key="row.key"
+                class="flex items-center gap-1.5 rounded-full border px-2.5 py-1"
+                :class="{
+                  'border-slate-200 bg-white/80 text-slate-700': row.key === 'todo',
+                  'border-indigo-200/80 bg-indigo-50/90 text-indigo-800': row.key === 'in_progress',
+                  'border-amber-200/80 bg-amber-50/90 text-amber-800': row.key === 'review',
+                  'border-emerald-200/80 bg-emerald-50/90 text-emerald-800': row.key === 'done'
+                }"
+              >
+                <span class="h-2 w-2 rounded-full" :class="row.color" />
+                <span class="font-medium">{{ row.label }}:</span>
+                <span class="font-bold">{{ row.count }}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col justify-between divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+        <div class="flex flex-col justify-between gap-3">
           <NuxtLink
             to="/projects"
-            class="flex items-center justify-between py-3 first:pt-0 transition-colors hover:text-indigo-700"
+            class="flex items-center justify-between rounded-2xl border border-indigo-200/80 bg-gradient-to-r from-indigo-50/85 to-white p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-sm"
           >
             <div>
-              <p class="text-xs font-medium text-slate-500">Proyek Aktif</p>
-              <p class="mt-0.5 text-xl font-bold text-slate-900">
+              <p class="text-xs font-semibold text-indigo-700">Proyek Aktif</p>
+              <p class="mt-0.5 text-2xl font-bold text-slate-900">
                 {{ dashboard.summary.activeProjects }}
                 <span class="text-xs font-normal text-slate-500">/ {{ dashboard.summary.totalProjects }} total</span>
               </p>
             </div>
-            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs">
               <UIcon name="i-lucide-folder-kanban" class="h-5 w-5" />
             </span>
           </NuxtLink>
 
           <NuxtLink
             to="/my-tasks"
-            class="flex items-center justify-between py-3 transition-colors hover:text-amber-700"
+            class="flex items-center justify-between rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50/85 to-white p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-sm"
           >
             <div>
-              <p class="text-xs font-medium text-slate-500">Menunggu Review</p>
-              <p class="mt-0.5 text-xl font-bold text-amber-700">
+              <p class="text-xs font-semibold text-amber-700">Menunggu Review</p>
+              <p class="mt-0.5 text-2xl font-bold text-amber-800">
                 {{ dashboard.statusBreakdown.review }}
                 <span class="text-xs font-normal text-slate-500">tugas</span>
               </p>
             </div>
-            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500 text-white shadow-xs">
               <UIcon name="i-lucide-eye" class="h-5 w-5" />
             </span>
           </NuxtLink>
 
           <NuxtLink
             to="/my-tasks"
-            class="flex items-center justify-between py-3 last:pb-0 transition-colors hover:text-rose-700"
+            class="flex items-center justify-between rounded-2xl border p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:shadow-sm"
+            :class="
+              dashboard.summary.overdueCount > 0
+                ? 'border-rose-200/80 bg-gradient-to-r from-rose-50/85 to-white hover:border-rose-300'
+                : 'border-emerald-200/80 bg-gradient-to-r from-emerald-50/85 to-white hover:border-emerald-300'
+            "
           >
             <div>
-              <p class="text-xs font-medium text-slate-500">Tugas Terlambat</p>
               <p
-                class="mt-0.5 text-xl font-bold"
+                class="text-xs font-semibold"
+                :class="dashboard.summary.overdueCount > 0 ? 'text-rose-700' : 'text-emerald-700'"
+              >
+                Tugas Terlambat
+              </p>
+              <p
+                class="mt-0.5 text-2xl font-bold"
                 :class="dashboard.summary.overdueCount > 0 ? 'text-rose-600' : 'text-emerald-700'"
               >
                 {{ dashboard.summary.overdueCount }}
@@ -292,8 +317,8 @@ const breakdownRows = computed(() => {
               </p>
             </div>
             <span
-              class="flex h-10 w-10 items-center justify-center rounded-xl"
-              :class="dashboard.summary.overdueCount > 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-700'"
+              class="flex h-11 w-11 items-center justify-center rounded-xl text-white shadow-xs"
+              :class="dashboard.summary.overdueCount > 0 ? 'bg-rose-600' : 'bg-emerald-600'"
             >
               <UIcon
                 :name="dashboard.summary.overdueCount > 0 ? 'i-lucide-alert-triangle' : 'i-lucide-check-circle-2'"
@@ -305,7 +330,7 @@ const breakdownRows = computed(() => {
       </div>
 
       <!-- Onboarding bila belum ada proyek -->
-      <UCard v-if="dashboard.summary.totalProjects === 0">
+      <UCard v-if="dashboard.summary.totalProjects === 0" class="rounded-2xl border-slate-200/90 shadow-xs">
         <template #header>
           <div>
             <h2 class="text-base font-semibold text-slate-900">Mulai dari sini</h2>
@@ -335,7 +360,7 @@ const breakdownRows = computed(() => {
 
       <template v-else>
         <!-- Interactive Tabbed Feed: Deadline Mendekat & Aktivitas Terbaru -->
-        <UCard :ui="{ body: 'p-0' }">
+        <UCard class="rounded-2xl border-slate-200/90 shadow-xs" :ui="{ body: 'p-0' }">
           <template #header>
             <div class="flex flex-wrap items-center justify-between gap-3">
               <div
@@ -350,7 +375,7 @@ const breakdownRows = computed(() => {
                   class="rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-colors"
                   :class="
                     activeTab === 'deadlines'
-                      ? 'bg-white text-indigo-700 shadow-2xs'
+                      ? 'bg-indigo-600 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   "
                   @click="activeTab = 'deadlines'"
@@ -364,7 +389,7 @@ const breakdownRows = computed(() => {
                   class="rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-colors"
                   :class="
                     activeTab === 'activity'
-                      ? 'bg-white text-indigo-700 shadow-2xs'
+                      ? 'bg-indigo-600 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   "
                   @click="activeTab = 'activity'"
@@ -408,12 +433,23 @@ const breakdownRows = computed(() => {
                 to="/my-tasks"
                 class="flex items-center justify-between gap-4 px-5 py-3.5 transition-colors hover:bg-indigo-50/40"
               >
-                <div class="min-w-0">
-                  <p class="truncate text-sm font-semibold text-slate-900">{{ t.title }}</p>
-                  <p class="text-xs text-slate-500">
-                    {{ t.projectName }}
-                    <span v-if="t.assigneeName">· {{ t.assigneeName }}</span>
-                  </p>
+                <div class="flex min-w-0 items-center gap-3">
+                  <span
+                    class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                    :class="isOverdue(t.dueDate, t.status) ? 'bg-rose-50 text-rose-600' : 'bg-indigo-50 text-indigo-600'"
+                  >
+                    <UIcon
+                      :name="isOverdue(t.dueDate, t.status) ? 'i-lucide-clock-alert' : 'i-lucide-calendar-clock'"
+                      class="h-4 w-4"
+                    />
+                  </span>
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-semibold text-slate-900">{{ t.title }}</p>
+                    <p class="text-xs text-slate-500">
+                      {{ t.projectName }}
+                      <span v-if="t.assigneeName">· {{ t.assigneeName }}</span>
+                    </p>
+                  </div>
                 </div>
                 <div class="flex shrink-0 items-center gap-2.5">
                   <UBadge :color="TASK_PRIORITY_META[t.priority].color" variant="subtle" size="xs">
@@ -442,12 +478,17 @@ const breakdownRows = computed(() => {
                 to="/kanban"
                 class="flex items-center justify-between gap-4 px-5 py-3.5 transition-colors hover:bg-indigo-50/40"
               >
-                <div class="min-w-0">
-                  <p class="truncate text-sm font-semibold text-slate-900">{{ act.title }}</p>
-                  <p class="text-xs text-slate-500">
-                    Proyek {{ act.projectName }}
-                    <span v-if="act.assigneeName">· Penanggung jawab: {{ act.assigneeName }}</span>
-                  </p>
+                <div class="flex min-w-0 items-center gap-3">
+                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+                    <span class="h-2.5 w-2.5 rounded-full" :class="TASK_STATUS_META[act.status].dot" />
+                  </span>
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-semibold text-slate-900">{{ act.title }}</p>
+                    <p class="text-xs text-slate-500">
+                      Proyek {{ act.projectName }}
+                      <span v-if="act.assigneeName">· Penanggung jawab: {{ act.assigneeName }}</span>
+                    </p>
+                  </div>
                 </div>
                 <div class="flex shrink-0 items-center gap-2.5">
                   <UBadge :color="TASK_STATUS_META[act.status].color" variant="subtle" size="xs">

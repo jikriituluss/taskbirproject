@@ -63,11 +63,16 @@ watch(
 
 <template>
   <div class="space-y-6">
-    <div>
-      <h1 class="text-2xl font-bold tracking-tight text-slate-900">Reports</h1>
-      <p class="mt-0.5 text-sm text-slate-500">
-        Ringkasan kinerja proyek, penyelesaian tugas, dan keterlambatan di workspace ini.
-      </p>
+    <div class="flex items-center gap-3.5">
+      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+        <UIcon name="i-lucide-bar-chart-3" class="h-5 w-5" />
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Reports</h1>
+        <p class="mt-0.5 text-sm text-slate-500">
+          Ringkasan kinerja proyek, penyelesaian tugas, dan keterlambatan di workspace ini.
+        </p>
+      </div>
     </div>
 
     <UAlert
@@ -89,34 +94,54 @@ watch(
     </div>
 
     <template v-else-if="report">
-      <div class="grid divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white shadow-2xs sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
-        <div class="p-4 sm:p-5">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Jumlah Proyek</p>
-          <p class="mt-1.5 text-2xl font-bold text-slate-900">
-            {{ report.metrics.totalProjects }}
-          </p>
+      <div class="grid divide-y divide-slate-100 rounded-2xl border border-slate-200/90 bg-white shadow-xs sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-y-0">
+        <div class="flex items-center justify-between p-4 sm:p-5">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Jumlah Proyek</p>
+            <p class="mt-1.5 text-2xl font-bold text-slate-900">
+              {{ report.metrics.totalProjects }}
+            </p>
+          </div>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+            <UIcon name="i-lucide-folder-kanban" class="h-5 w-5" />
+          </span>
         </div>
-        <div class="p-4 sm:p-5">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tugas Selesai</p>
-          <p class="mt-1.5 text-2xl font-bold text-emerald-700">
-            {{ report.metrics.completedTasks }}
-          </p>
+        <div class="flex items-center justify-between p-4 sm:p-5">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tugas Selesai</p>
+            <p class="mt-1.5 text-2xl font-bold text-emerald-700">
+              {{ report.metrics.completedTasks }}
+            </p>
+          </div>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+            <UIcon name="i-lucide-check-circle-2" class="h-5 w-5" />
+          </span>
         </div>
-        <div class="p-4 sm:p-5">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Belum Selesai</p>
-          <p class="mt-1.5 text-2xl font-bold text-indigo-700">
-            {{ report.metrics.incompleteTasks }}
-          </p>
+        <div class="flex items-center justify-between p-4 sm:p-5">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Belum Selesai</p>
+            <p class="mt-1.5 text-2xl font-bold text-indigo-700">
+              {{ report.metrics.incompleteTasks }}
+            </p>
+          </div>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+            <UIcon name="i-lucide-clock" class="h-5 w-5" />
+          </span>
         </div>
-        <div class="p-4 sm:p-5">
-          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tugas Terlambat</p>
-          <p class="mt-1.5 text-2xl font-bold text-rose-600">
-            {{ report.metrics.overdueTasksCount }}
-          </p>
+        <div class="flex items-center justify-between p-4 sm:p-5">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tugas Terlambat</p>
+            <p class="mt-1.5 text-2xl font-bold text-rose-600">
+              {{ report.metrics.overdueTasksCount }}
+            </p>
+          </div>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+            <UIcon name="i-lucide-alert-triangle" class="h-5 w-5" />
+          </span>
         </div>
       </div>
 
-      <UCard :ui="{ body: 'p-0' }">
+      <UCard class="overflow-hidden rounded-2xl border-slate-200/90 shadow-xs" :ui="{ body: 'p-0' }">
         <template #header>
           <h2 class="text-base font-semibold text-slate-900">Persentase Progres Proyek</h2>
         </template>

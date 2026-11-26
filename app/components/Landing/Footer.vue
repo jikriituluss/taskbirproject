@@ -18,7 +18,7 @@
         </NuxtLink>
       </nav>
 
-      <p class="text-xs text-slate-400 md:text-right">© {{ new Date().getFullYear() }} Taskbir</p>
+      <p class="text-xs text-slate-500 md:text-right">© {{ new Date().getFullYear() }} Taskbir</p>
     </div>
   </footer>
 </template>

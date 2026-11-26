@@ -37,7 +37,7 @@ const features = [
     title: 'Kanban',
     desc: 'Geser status, lihat alur kerja.',
     icon: 'i-lucide-columns-3',
-    detail: 'Empat kolom: To Do, In Progress, Review, Done — drag & drop.',
+    detail: 'Empat kolom: To Do, In Progress, Review, Done (drag & drop).',
     preview: {
       heading: 'Papan tim',
       items: [
@@ -159,7 +159,7 @@ const active = computed(() => features.find((f) => f.id === activeId.value) ?? f
               v-for="(item, i) in active.preview.items"
               :key="item.label"
               class="flex items-center gap-3 rounded-lg border border-slate-200/80 bg-white px-3.5 py-3 text-sm text-slate-700"
-              :class="item.done ? 'text-slate-400 line-through decoration-slate-300' : ''"
+              :class="item.done ? 'text-slate-500 line-through decoration-slate-400' : ''"
             >
               <span
                 class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border"

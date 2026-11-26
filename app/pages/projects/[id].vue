@@ -195,11 +195,11 @@ watch(
 
     <template v-else-if="project">
       <!-- Project Header Card -->
-      <UCard>
+      <div class="rounded-2xl border border-indigo-200/80 bg-gradient-to-br from-indigo-50/75 via-white to-amber-50/50 p-6 shadow-xs">
         <div class="flex flex-wrap items-start justify-between gap-4">
           <div class="space-y-1.5">
             <div class="flex items-center gap-2.5">
-              <h1 class="text-2xl font-bold text-slate-900">{{ project.name }}</h1>
+              <h1 class="text-2xl font-bold tracking-tight text-slate-900">{{ project.name }}</h1>
               <UBadge :color="PROJECT_STATUS_META[project.status].color" variant="subtle">
                 {{ PROJECT_STATUS_META[project.status].label }}
               </UBadge>
@@ -224,18 +224,18 @@ watch(
           </div>
         </div>
 
-        <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+        <div class="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-slate-200/80">
           <div
             class="h-full rounded-full bg-indigo-600 transition-all"
             :style="{ width: `${project.progress}%` }"
           />
         </div>
-      </UCard>
+      </div>
 
       <div class="grid gap-6 lg:grid-cols-3">
         <!-- Tasks Table -->
         <div class="lg:col-span-2">
-          <UCard :ui="{ body: 'p-0' }">
+          <UCard class="overflow-hidden rounded-2xl border-slate-200/90 shadow-xs" :ui="{ body: 'p-0' }">
             <template #header>
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <h2 class="text-base font-semibold text-slate-900">
@@ -335,7 +335,7 @@ watch(
 
         <!-- Project Members -->
         <div>
-          <UCard>
+          <UCard class="rounded-2xl border-slate-200/90 shadow-xs">
             <template #header>
               <h2 class="text-base font-semibold text-slate-900">
                 Anggota Proyek ({{ project.members.length }})

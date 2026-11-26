@@ -105,16 +105,26 @@ async function savePassword() {
 
 <template>
   <div class="mx-auto max-w-3xl space-y-6">
-    <div>
-      <h1 class="text-2xl font-bold tracking-tight text-slate-900">Settings</h1>
-      <p class="mt-0.5 text-sm text-slate-500">
-        Kelola profil akun Anda dan pengaturan workspace aktif.
-      </p>
+    <div class="flex items-center gap-3.5">
+      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+        <UIcon name="i-lucide-settings" class="h-5 w-5" />
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Settings</h1>
+        <p class="mt-0.5 text-sm text-slate-500">
+          Kelola profil akun Anda dan pengaturan workspace aktif.
+        </p>
+      </div>
     </div>
 
-    <UCard>
+    <UCard class="rounded-2xl border-slate-200/90 shadow-xs">
       <template #header>
-        <h2 class="text-base font-semibold text-slate-900">Profil Pengguna</h2>
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+            <UIcon name="i-lucide-user" class="h-4 w-4" />
+          </span>
+          <h2 class="text-base font-semibold text-slate-900">Profil Pengguna</h2>
+        </div>
       </template>
 
       <form class="space-y-4" @submit.prevent="saveProfile">
@@ -134,10 +144,15 @@ async function savePassword() {
       </form>
     </UCard>
 
-    <UCard v-if="activeWorkspace">
+    <UCard v-if="activeWorkspace" class="rounded-2xl border-slate-200/90 shadow-xs">
       <template #header>
         <div class="flex items-center justify-between">
-          <h2 class="text-base font-semibold text-slate-900">Pengaturan Workspace</h2>
+          <div class="flex items-center gap-2.5">
+            <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+              <UIcon name="i-lucide-building-2" class="h-4 w-4" />
+            </span>
+            <h2 class="text-base font-semibold text-slate-900">Pengaturan Workspace</h2>
+          </div>
           <UBadge v-if="!isOwner" color="neutral" variant="subtle" size="xs">
             Hanya Owner
           </UBadge>
@@ -161,9 +176,14 @@ async function savePassword() {
       </form>
     </UCard>
 
-    <UCard>
+    <UCard class="rounded-2xl border-slate-200/90 shadow-xs">
       <template #header>
-        <h2 class="text-base font-semibold text-slate-900">Keamanan &amp; Password</h2>
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+            <UIcon name="i-lucide-shield-check" class="h-4 w-4" />
+          </span>
+          <h2 class="text-base font-semibold text-slate-900">Keamanan &amp; Password</h2>
+        </div>
       </template>
 
       <form class="space-y-4" @submit.prevent="savePassword">

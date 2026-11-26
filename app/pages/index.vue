@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 useHead({
-  title: 'Taskbir — Manajemen Proyek & Tugas Tim',
+  title: 'Taskbir - Manajemen Proyek & Tugas Tim',
   meta: [
     {
       name: 'description',

@@ -125,19 +125,24 @@ watch(
 <template>
   <div class="space-y-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:space-y-3 lg:overflow-hidden">
     <div class="flex shrink-0 flex-wrap items-center justify-between gap-3">
-      <div>
-        <h1 class="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">Calendar</h1>
-        <p class="text-xs text-slate-500 sm:text-sm">
-          Pantau deadline tugas dan jadwal deadline proyek dalam tampilan kalender.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-calendar" class="h-5 w-5" />
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">Calendar</h1>
+          <p class="text-xs text-slate-500 sm:text-sm">
+            Pantau deadline tugas dan jadwal deadline proyek dalam tampilan kalender.
+          </p>
+        </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <UButton icon="i-lucide-chevron-left" color="neutral" variant="outline" size="xs" aria-label="Bulan sebelumnya" @click="prevMonth" />
+      <div class="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-1 shadow-2xs">
+        <UButton icon="i-lucide-chevron-left" color="neutral" variant="ghost" size="xs" aria-label="Bulan sebelumnya" @click="prevMonth" />
         <span class="min-w-36 text-center text-sm font-semibold capitalize text-slate-900">
           {{ monthLabel }}
         </span>
-        <UButton icon="i-lucide-chevron-right" color="neutral" variant="outline" size="xs" aria-label="Bulan berikutnya" @click="nextMonth" />
+        <UButton icon="i-lucide-chevron-right" color="neutral" variant="ghost" size="xs" aria-label="Bulan berikutnya" @click="nextMonth" />
       </div>
     </div>
 
@@ -175,7 +180,7 @@ watch(
       </UAlert>
 
       <div
-        class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs lg:flex lg:min-h-0 lg:flex-1 lg:flex-col"
+        class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs lg:flex lg:min-h-0 lg:flex-1 lg:flex-col"
       >
         <div class="grid shrink-0 grid-cols-7 border-b border-slate-200 bg-slate-50 text-center text-[11px] font-semibold uppercase text-slate-500">
           <div v-for="d in ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab']" :key="d" class="py-1.5">

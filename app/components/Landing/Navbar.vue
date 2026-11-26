@@ -52,7 +52,7 @@ onUnmounted(() => {
       <div class="flex items-center gap-2">
         <UButton to="/login" color="neutral" variant="ghost" size="sm">Masuk</UButton>
         <UButton to="/register" color="primary" size="sm" trailing-icon="i-lucide-arrow-right">
-          Coba Gratis
+          Daftar Gratis
         </UButton>
       </div>
     </nav>

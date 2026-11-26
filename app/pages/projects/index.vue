@@ -164,11 +164,16 @@ watch(
 <template>
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Projects</h1>
-        <p class="mt-0.5 text-sm text-slate-500">
-          Kelola seluruh proyek, deadline, anggota, dan progres di workspace ini.
-        </p>
+      <div class="flex items-center gap-3.5">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-folder-kanban" class="h-5 w-5" />
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900">Projects</h1>
+          <p class="mt-0.5 text-sm text-slate-500">
+            Kelola seluruh proyek, deadline, anggota, dan progres di workspace ini.
+          </p>
+        </div>
       </div>
       <UButton
         v-if="canManageProjects"
@@ -198,10 +203,12 @@ watch(
       <USkeleton v-for="i in 3" :key="i" class="h-44 rounded-xl" />
     </div>
 
-    <UCard v-else-if="projects.length === 0">
+    <UCard v-else-if="projects.length === 0" class="rounded-2xl border-slate-200/90 shadow-xs">
       <div class="py-12 text-center">
-        <UIcon name="i-lucide-folder-kanban" class="mx-auto h-10 w-10 text-slate-300" />
-        <p class="mt-3 text-sm font-medium text-slate-900">Belum ada proyek</p>
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+          <UIcon name="i-lucide-folder-kanban" class="h-6 w-6" />
+        </div>
+        <p class="mt-3 text-sm font-semibold text-slate-900">Belum ada proyek</p>
         <p class="mt-1 text-xs text-slate-500">
           Buat proyek pertama untuk mulai mengorganisir tugas tim Anda.
         </p>
@@ -218,7 +225,11 @@ watch(
     </UCard>
 
     <div v-else class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <UCard v-for="p in projects" :key="p.id" class="flex flex-col justify-between">
+      <UCard
+        v-for="p in projects"
+        :key="p.id"
+        class="flex flex-col justify-between rounded-2xl border-slate-200/90 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
+      >
         <div class="space-y-3">
           <div class="flex items-start justify-between gap-2">
             <NuxtLink

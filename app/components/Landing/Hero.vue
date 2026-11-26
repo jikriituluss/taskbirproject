@@ -2,6 +2,7 @@
 const reducedMotion = ref(false)
 const mockEl = ref<HTMLElement | null>(null)
 const highlight = ref(0)
+const previewTab = ref<'kanban' | 'proofs' | 'progress'>('kanban')
 
 const columns = [
   {
@@ -57,30 +58,18 @@ function onMouseLeave() {
 </script>
 
 <template>
-  <section class="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20">
-    <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(79,70,229,0.12),transparent)]"
-      aria-hidden="true"
-    />
-
+  <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50/90 via-indigo-50/40 to-slate-50 pt-24 pb-14 sm:pt-32 sm:pb-20">
     <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
       <div class="mx-auto max-w-2xl text-center">
-        <span
-          class="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700"
-        >
-          <UIcon name="i-lucide-sparkles" class="h-3.5 w-3.5" />
-          Manajemen tim modern
-        </span>
-
-        <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1]">
+        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.12]">
           Kerja tim jadi
-          <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-            rapi & cepat
+          <span class="text-indigo-700 underline decoration-amber-400 decoration-4 underline-offset-8">
+            rapi &amp; terukur
           </span>
         </h1>
 
-        <p class="mt-4 text-base text-slate-600 sm:text-lg">
-          Satu tempat untuk tugas, proyek, dan progres tim — tanpa drama spreadsheet.
+        <p class="mt-5 text-base text-slate-600 sm:text-lg">
+          Satu workspace untuk proyek, deadline berjam, bukti kerja foto &amp; link, serta kontrol peran Owner dan Anggota.
         </p>
 
         <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
@@ -89,7 +78,7 @@ function onMouseLeave() {
             color="primary"
             size="lg"
             trailing-icon="i-lucide-arrow-right"
-            class="shadow-lg shadow-indigo-500/25"
+            class="shadow-lg shadow-indigo-600/20"
           >
             Mulai Gratis
           </UButton>
@@ -102,13 +91,36 @@ function onMouseLeave() {
       <div class="mt-10 sm:mt-14" @mousemove="onMouseMove" @mouseleave="onMouseLeave">
         <div
           ref="mockEl"
-          class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10 transition-transform duration-200 ease-out will-change-transform"
+          class="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10 transition-transform duration-200 ease-out will-change-transform"
         >
-          <div class="flex items-center gap-1.5 border-b border-slate-100 px-4 py-3">
-            <span class="h-2.5 w-2.5 rounded-full bg-rose-400" />
-            <span class="h-2.5 w-2.5 rounded-full bg-amber-400" />
-            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-            <span class="ml-3 hidden text-xs text-slate-400 sm:block">app.taskbir.id/dashboard</span>
+          <div class="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+            <div class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-rose-400" />
+              <span class="h-2.5 w-2.5 rounded-full bg-amber-400" />
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+              <span class="ml-3 hidden text-xs font-medium text-slate-500 sm:block">app.taskbir.id/dashboard</span>
+            </div>
+
+            <div class="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-[11px] font-semibold">
+              <button
+                v-for="tab in [
+                  { id: 'kanban', label: 'Kanban' },
+                  { id: 'proofs', label: 'Bukti Kerja' },
+                  { id: 'progress', label: 'Progres' }
+                ] as const"
+                :key="tab.id"
+                type="button"
+                class="rounded-md px-2.5 py-1 transition-colors"
+                :class="
+                  previewTab === tab.id
+                    ? 'bg-white text-indigo-700 shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                "
+                @click="previewTab = tab.id"
+              >
+                {{ tab.label }}
+              </button>
+            </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-[6.5rem_1fr]">
@@ -134,16 +146,21 @@ function onMouseLeave() {
                 </div>
                 <div class="flex -space-x-2">
                   <span
-                    v-for="c in ['A', 'B', 'C']"
-                    :key="c"
-                    class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-indigo-100 text-[10px] font-bold text-indigo-700"
+                    v-for="av in [
+                      { label: 'A', cls: 'bg-indigo-100 text-indigo-700' },
+                      { label: 'B', cls: 'bg-amber-100 text-amber-800' },
+                      { label: 'C', cls: 'bg-indigo-50 text-indigo-700' }
+                    ]"
+                    :key="av.label"
+                    class="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-[10px] font-bold"
+                    :class="av.cls"
                   >
-                    {{ c }}
+                    {{ av.label }}
                   </span>
                 </div>
               </div>
 
-              <div class="grid grid-cols-3 gap-2 sm:gap-3">
+              <div v-if="previewTab === 'kanban'" class="grid grid-cols-3 gap-2 sm:gap-3">
                 <div
                   v-for="(col, ci) in columns"
                   :key="col.title"
@@ -153,7 +170,7 @@ function onMouseLeave() {
                     <span class="rounded px-1.5 py-0.5 text-[10px] font-semibold" :class="col.tone">
                       {{ col.title }}
                     </span>
-                    <span class="text-[10px] text-slate-400">{{ col.tasks.length }}</span>
+                    <span class="text-[10px] text-slate-500">{{ col.tasks.length }}</span>
                   </div>
                   <div class="space-y-1.5">
                     <div
@@ -172,8 +189,48 @@ function onMouseLeave() {
                 </div>
               </div>
 
+              <div v-else-if="previewTab === 'proofs'" class="space-y-2">
+                <div
+                  v-for="item in [
+                    { title: 'Desain Wireframe Dashboard', owner: 'Siti Rahma', badge: 'Link + Foto' },
+                    { title: 'Integrasi TiDB Cloud', owner: 'Budi Santoso', badge: 'Link PR' },
+                    { title: 'Uji Kontras Light Mode', owner: 'Dewi Lestari', badge: 'Foto Bukti' }
+                  ]"
+                  :key="item.title"
+                  class="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/70 px-3 py-2"
+                >
+                  <div>
+                    <p class="text-xs font-semibold text-slate-900">{{ item.title }}</p>
+                    <p class="text-[11px] text-slate-500">Penanggung jawab: {{ item.owner }}</p>
+                  </div>
+                  <span class="rounded-md bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
+                    {{ item.badge }}
+                  </span>
+                </div>
+              </div>
+
+              <div v-else class="space-y-3">
+                <div
+                  v-for="m in [
+                    { name: 'Raka Pratama (Owner)', pct: 100, count: '8/8 selesai' },
+                    { name: 'Siti Rahma (Anggota)', pct: 80, count: '4/5 selesai' },
+                    { name: 'Budi Santoso (Anggota)', pct: 50, count: '3/6 selesai' }
+                  ]"
+                  :key="m.name"
+                  class="space-y-1 rounded-lg bg-slate-50 p-2.5"
+                >
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="font-semibold text-slate-800">{{ m.name }}</span>
+                    <span class="font-medium text-indigo-700">{{ m.count }}</span>
+                  </div>
+                  <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+                    <div class="h-full rounded-full bg-indigo-600" :style="{ width: `${m.pct}%` }" />
+                  </div>
+                </div>
+              </div>
+
               <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                <div class="h-full w-2/3 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
+                <div class="h-full w-2/3 rounded-full bg-gradient-to-r from-indigo-600 to-amber-500" />
               </div>
             </div>
           </div>

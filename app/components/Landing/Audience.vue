@@ -22,7 +22,7 @@ const audiences = [
 </script>
 
 <template>
-  <section class="bg-white py-16 sm:py-24">
+  <section class="border-t border-slate-200 bg-white py-16 sm:py-24">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <LandingSectionHeader
         eyebrow="Untuk siapa"
@@ -33,9 +33,9 @@ const audiences = [
         <article
           v-for="a in audiences"
           :key="a.title"
-          class="flex flex-col rounded-2xl border border-slate-200 bg-slate-50/60 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-200 hover:bg-white hover:shadow-xl hover:shadow-slate-900/5"
+          class="flex flex-col rounded-2xl border border-slate-200 bg-slate-50/70 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-200 hover:bg-white hover:shadow-xl hover:shadow-slate-900/5"
         >
-          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white">
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs">
             <UIcon :name="a.icon" class="h-5 w-5" />
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900">{{ a.title }}</h3>
